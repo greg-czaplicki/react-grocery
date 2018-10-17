@@ -3,15 +3,49 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 class App extends Component {
+  constructor() {
+    super();
+
+    this.itemName = React.createRef();
+    this.itemCategory = React.createRef();
+  }
+  // itemName, itemQuantity, id
   state = {
     items: {
-      Produce: [
-        { id: 1, itemName: "Parsley", itemQuantity: 1 },
-        { id: 2, itemName: "Basil", itemQuantity: 2 }
-      ],
+      Produce: [],
       Deli: [],
-      Snacks: [{ id: 1, itemName: "Chips", itemQuantity: 2 }]
+      "Breads/Pasta": [],
+      "Baking/Condiments": [],
+      "Canned Goods": [],
+      Breakfast: [],
+      Beverages: [],
+      "Meat/Seafood": [],
+      Dairy: [],
+      "Pet Products": [],
+      "Cleaning Products": [],
+      "Paper/Plastics": [],
+      Toiletries: [],
+      "Frozen Foods": [],
+      Miscellaneous: [],
+      Recipes: []
     }
+  };
+
+  addItem = e => {
+    // prevent form reload
+    e.preventDefault();
+    // get copy of state and current input values
+    const { items } = this.state;
+    const itemName = this.itemName.current.value;
+    const itemCategory = this.itemCategory.current.value;
+    // convert input value to grocery object
+    const newItem = { itemName };
+    // push object to the copy of state
+    items[itemCategory].push(newItem);
+    // update state
+    this.setState({
+      items
+    });
   };
 
   render() {
@@ -22,6 +56,7 @@ class App extends Component {
           <div className="form-group">
             <label htmlFor="exampleFormControlInput1">Item Name:</label>
             <input
+              ref={this.itemName}
               type="text"
               className="form-control"
               id="itemName"
@@ -31,22 +66,31 @@ class App extends Component {
           </div>
           <div className="form-group">
             <label htmlFor="exampleFormControlSelect1">Category:</label>
-            <select className="form-control" id="itemCategory">
+            <select
+              ref={this.itemCategory}
+              className="form-control"
+              id="itemCategory"
+            >
               {Object.keys(this.state.items).map(category => (
                 <option key={category}>{category}</option>
               ))}
             </select>
           </div>
-          <button type="submit" className="btn btn-primary btn-lg">
+          <button
+            onClick={e => this.addItem(e)}
+            type="submit"
+            className="btn btn-primary btn-lg"
+          >
             Add Item
           </button>
         </form>
-        <h3>List:</h3>
+        <h2>List:</h2>
+        <h3>{this.state.newItemName}</h3>
         {Object.keys(this.state.items).map(category => (
           <div key={category}>
             {this.state.items[category].length > 0 && <h4>{category}</h4>}
             {this.state.items[category].map(item => (
-              <li key={item.id}>{item.itemName}</li>
+              <li key={item.ItemName}>{item.itemName}</li>
             ))}
           </div>
         ))}
