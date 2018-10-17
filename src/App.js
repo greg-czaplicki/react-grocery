@@ -1,25 +1,42 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
 
 class App extends Component {
+  constructor() {
+    super();
+    this.newItem = React.createRef();
+  }
+  state = {
+    items: []
+  };
+
+  addItem = () => {
+    const { items } = this.state;
+    const newItem = this.newItem.current.value;
+    this.setState({
+      items: [...items, newItem]
+    });
+    this.newItem.current.value = "";
+  };
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className="container">
+        <h1>Grocery List</h1>
+        <input
+          ref={this.newItem}
+          placeholder="Add Item..."
+          type="text"
+          name="itemName"
+          id="itemInput"
+        />
+        <button onClick={this.addItem}>Add Item</button>
+        <h3>List:</h3>
+        <ul>
+          {this.state.items.map(item => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
       </div>
     );
   }
