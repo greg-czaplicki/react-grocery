@@ -2,10 +2,6 @@ body {
   margin: 50px auto;
 }
 
-.container {
-  max-width: 45vw;
-}
-
-.btn {
-  margin-bottom: 20px;
+.quantity {
+  display: flex;
 }
