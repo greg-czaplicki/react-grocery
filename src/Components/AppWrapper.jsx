@@ -10,24 +10,34 @@ class AppWrapper extends Component {
         id: 1,
         itemName: "Parsley",
         itemCategory: "Produce",
-        ItemQuantity: 1,
+        itemQuantity: 1,
         isComplete: false
       },
       {
         id: 2,
         itemName: "Milk",
         itemCategory: "Dairy",
-        ItemQuantity: 1,
+        itemQuantity: 2,
+        isComplete: false
+      },
+      {
+        id: 3,
+        itemName: "Butter",
+        itemCategory: "Dairy",
+        itemQuantity: 1,
         isComplete: false
       }
     ]
   };
+
   render() {
+    const { items } = this.state;
+    const uniqueCategories = [...new Set(items.map(item => item.itemCategory))];
     return (
       <div>
         <h1>{this.state.appTitle}</h1>
         <AddItem />
-        <ListWrapper items={this.state.items} />
+        <ListWrapper items={items} categories={uniqueCategories} />
       </div>
     );
   }
