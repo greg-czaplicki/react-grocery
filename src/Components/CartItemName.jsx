@@ -5,9 +5,12 @@ class CartItemName extends Component {
   render() {
     const { item } = this.props;
     return (
-      <div>
-        <p>{item.itemName}</p>
-      </div>
+      <React.Fragment>
+        <p>
+          {item.itemName}
+          {item.itemQuantity > 1 ? ` - ${item.itemQuantity}` : false}
+        </p>
+      </React.Fragment>
     );
   }
 }

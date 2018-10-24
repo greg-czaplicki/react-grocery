@@ -8,12 +8,12 @@ class CartCategory extends Component {
     const { items, category } = this.props;
     const filteredItems = items.filter(item => item.itemCategory === category);
     return (
-      <div>
+      <React.Fragment>
         <h4>{category}</h4>
         {filteredItems.map(item => (
-          <CartItemName item={item} />
+          <CartItemName key={item.id} item={item} />
         ))}
-      </div>
+      </React.Fragment>
     );
   }
 }

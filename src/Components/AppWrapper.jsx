@@ -5,39 +5,65 @@ import ListWrapper from "./ListWrapper";
 class AppWrapper extends Component {
   state = {
     appTitle: "Grocery List",
-    items: [
-      {
-        id: 1,
-        itemName: "Parsley",
-        itemCategory: "Produce",
-        itemQuantity: 1,
-        isComplete: false
-      },
-      {
-        id: 2,
-        itemName: "Milk",
-        itemCategory: "Dairy",
-        itemQuantity: 2,
-        isComplete: false
-      },
-      {
-        id: 3,
-        itemName: "Butter",
-        itemCategory: "Dairy",
-        itemQuantity: 1,
-        isComplete: false
-      }
-    ]
+    categories: [
+      "Produce",
+      "Deli",
+      "Breads/Pasta",
+      "Snacks",
+      "Baking/Condiments",
+      "Canned Goods",
+      "Breakfast",
+      "Beverages",
+      "Meat/Seafood",
+      "Dairy",
+      "Pet Supplies",
+      "Cleaning Products",
+      "Toiletries",
+      "Frozen Foods",
+      "Miscellaneous",
+      "Recipes"
+    ],
+    items: []
+  };
+
+  handleAddItem = (e, quantity) => {
+    e.preventDefault();
+    const itemName = e.target.itemName.value;
+    const itemCategory = e.target.itemCategory.value;
+    const itemQuantity = quantity;
+    const items = [...this.state.items];
+    const id = items.length + 1;
+    const isComplete = false;
+    const newItem = { id, itemName, itemQuantity, itemCategory, isComplete };
+    items.push(newItem);
+    this.setState({
+      items
+    });
+    e.target.reset();
   };
 
   render() {
-    const { items } = this.state;
-    const uniqueCategories = [...new Set(items.map(item => item.itemCategory))];
+    const { items, appTitle, categories } = this.state;
+    const cartItems = items.filter(item => item.isComplete === false);
+    const completedItems = items.filter(item => item.isComplete === true);
+    const Categories = [...new Set(cartItems.map(item => item.itemCategory))];
+    const completedCategories = [
+      ...new Set(completedItems.map(item => item.itemCategory))
+    ];
     return (
       <div>
-        <h1>{this.state.appTitle}</h1>
-        <AddItem />
-        <ListWrapper items={items} categories={uniqueCategories} />
+        <h1>{appTitle}</h1>
+        <AddItem
+          categories={categories}
+          onAddItem={this.handleAddItem}
+          quantity={this.state.itemQuantity}
+        />
+        <ListWrapper
+          items={cartItems}
+          categories={Categories}
+          completedItems={completedItems}
+          completedCategories={completedCategories}
+        />
       </div>
     );
   }

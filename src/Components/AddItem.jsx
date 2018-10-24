@@ -1,22 +1,57 @@
 import React, { Component } from "react";
 
 class AddItem extends Component {
-  state = {};
+  state = {
+    itemQuantity: 1
+  };
+
+  incrementQuantity = () => {
+    const { itemQuantity } = this.state;
+    this.setState({ itemQuantity: itemQuantity + 1 });
+  };
+
+  decrementQuantity = () => {
+    const { itemQuantity } = this.state;
+    this.setState({ itemQuantity: itemQuantity - 1 });
+  };
+
+  handleFormReset = () => {
+    this.setState({
+      itemQuantity: 1
+    });
+  };
+
   render() {
+    const { categories } = this.props;
+    const { itemQuantity } = this.state;
     return (
-      <div>
-        <input type="text" autoFocus placeholder="Add an item..." />
+      <form
+        onSubmit={e => {
+          this.props.onAddItem(e, itemQuantity);
+        }}
+        onReset={this.handleFormReset}
+      >
+        <input
+          ref={this.name}
+          type="text"
+          name="itemName"
+          autoFocus
+          placeholder="Add an item..."
+        />
         <select name="itemCategory" id="itemCategory">
-          <option value="0">Produce</option>
-          <option value="1">Dairy</option>
+          {categories.map(category => (
+            <option key={category}>{category}</option>
+          ))}
         </select>
         <div className="quantity">
-          <button>+</button>
-          <p>2</p>
-          <button>-</button>
+          {itemQuantity > 1 && (
+            <input type="button" value="-" onClick={this.decrementQuantity} />
+          )}
+          <span name="itemQuantity">{itemQuantity}</span>
+          <input type="button" value="+" onClick={this.incrementQuantity} />
         </div>
-        <button>Add Item</button>
-      </div>
+        <button type="submit">Add Item</button>
+      </form>
     );
   }
 }
