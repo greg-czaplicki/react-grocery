@@ -9,13 +9,19 @@ class ListWrapper extends Component {
       categories,
       items,
       completedItems,
-      completedCategories
+      completedCategories,
+      toggleCompleted
     } = this.props;
     return (
       <React.Fragment>
         <h2>Cart</h2>
         {categories.map(category => (
-          <CartCategory key={category} items={items} category={category} />
+          <CartCategory
+            key={category}
+            items={items}
+            category={category}
+            toggleCompleted={toggleCompleted}
+          />
         ))}
         <h2>Completed</h2>
         {completedCategories.map(category => (
@@ -23,6 +29,7 @@ class ListWrapper extends Component {
             key={category}
             items={completedItems}
             category={category}
+            toggleCompleted={toggleCompleted}
           />
         ))}
       </React.Fragment>

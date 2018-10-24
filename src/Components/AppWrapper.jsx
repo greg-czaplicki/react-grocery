@@ -42,6 +42,15 @@ class AppWrapper extends Component {
     e.target.reset();
   };
 
+  toggleCompleted = item => {
+    const items = this.state.items;
+    const getItem = items[item.id - 1];
+    getItem.isComplete = !getItem.isComplete;
+    this.setState({
+      items
+    });
+  };
+
   render() {
     const { items, appTitle, categories } = this.state;
     const cartItems = items.filter(item => item.isComplete === false);
@@ -53,16 +62,13 @@ class AppWrapper extends Component {
     return (
       <div>
         <h1>{appTitle}</h1>
-        <AddItem
-          categories={categories}
-          onAddItem={this.handleAddItem}
-          quantity={this.state.itemQuantity}
-        />
+        <AddItem categories={categories} onAddItem={this.handleAddItem} />
         <ListWrapper
           items={cartItems}
           categories={Categories}
           completedItems={completedItems}
           completedCategories={completedCategories}
+          toggleCompleted={this.toggleCompleted}
         />
       </div>
     );

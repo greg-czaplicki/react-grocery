@@ -22,12 +22,12 @@ class AddItem extends Component {
   };
 
   render() {
-    const { categories } = this.props;
+    const { categories, onAddItem } = this.props;
     const { itemQuantity } = this.state;
     return (
       <form
         onSubmit={e => {
-          this.props.onAddItem(e, itemQuantity);
+          onAddItem(e, itemQuantity);
         }}
         onReset={this.handleFormReset}
       >
