@@ -5,6 +5,8 @@ class AddItem extends Component {
     itemQuantity: 1
   };
 
+  itemLength = React.createRef();
+
   incrementQuantity = () => {
     const { itemQuantity } = this.state;
     this.setState({ itemQuantity: itemQuantity + 1 });
@@ -32,7 +34,7 @@ class AddItem extends Component {
         onReset={this.handleFormReset}
       >
         <input
-          ref={this.name}
+          ref={this.itemLength}
           type="text"
           name="itemName"
           autoFocus

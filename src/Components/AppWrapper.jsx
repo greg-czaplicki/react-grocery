@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AddItem from "./AddItem";
 import ListWrapper from "./ListWrapper";
+import firebase from "../firebase";
 
 class AppWrapper extends Component {
   state = {
@@ -26,12 +27,30 @@ class AppWrapper extends Component {
     items: []
   };
 
+  componentDidMount() {
+    const db = firebase.firestore();
+    db.collection("items")
+      .get()
+      .then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          const items = this.state.items;
+          items.push(doc.data());
+          this.setState({
+            items
+          });
+        });
+      })
+      .catch(function(error) {
+        console.log("Error getting items: ", error);
+      });
+  }
+
   handleAddItem = (e, quantity) => {
     e.preventDefault();
     const itemName = e.target.itemName.value;
     const itemCategory = e.target.itemCategory.value;
     const itemQuantity = quantity;
-    const items = [...this.state.items];
+    const items = this.state.items;
     const id = items.length + 1;
     const isComplete = false;
     const newItem = { id, itemName, itemQuantity, itemCategory, isComplete };
@@ -60,7 +79,7 @@ class AppWrapper extends Component {
       ...new Set(completedItems.map(item => item.itemCategory))
     ];
     return (
-      <div>
+      <div className="container">
         <h1>{appTitle}</h1>
         <AddItem categories={categories} onAddItem={this.handleAddItem} />
         <ListWrapper
