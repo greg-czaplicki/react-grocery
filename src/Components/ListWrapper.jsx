@@ -6,6 +6,7 @@ class ListWrapper extends Component {
   state = {};
   render() {
     const {
+      totalItems,
       categories,
       items,
       completedItems,
@@ -15,7 +16,12 @@ class ListWrapper extends Component {
     } = this.props;
     return (
       <React.Fragment>
-        <h2>Cart</h2>
+        <i className="fa fa-shopping-cart" id="shopping-cart" />
+        {totalItems.length > 0 && (
+          <span className="badge badge-pill badge-primary">
+            {totalItems.length}
+          </span>
+        )}
         {categories.map(category => (
           <CartCategory
             key={category}
@@ -34,7 +40,10 @@ class ListWrapper extends Component {
           />
         ))}
         {(completedItems.length > 0 || items.length > 0) && (
-          <button onClick={onDeleteDB} className="btn btn-lg">
+          <button
+            onClick={onDeleteDB}
+            className="btn btn-warning btn-block btn-lg"
+          >
             Clear List?
           </button>
         )}

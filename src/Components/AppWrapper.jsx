@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import AddItem from "./AddItem";
 import ListWrapper from "./ListWrapper";
 import firebase from "../firebase";
-// import { QuerySnapshot } from "@firebase/firestore-types";
 
 const firestore = firebase.firestore();
 firestore.settings({ timestampsInSnapshots: true });
@@ -39,9 +38,17 @@ class AppWrapper extends Component {
     );
   }
 
+  titleCaseItem = name => {
+    return name
+      .split(" ")
+      .map(w => w[0].toUpperCase() + w.substr(1).toLowerCase())
+      .join(" ");
+  };
+
   handleAddItem = (e, quantity) => {
     e.preventDefault();
-    const itemName = e.target.itemName.value;
+    let itemName = e.target.itemName.value;
+    itemName = this.titleCaseItem(itemName);
     const itemCategory = e.target.itemCategory.value;
     const itemQuantity = quantity;
     const items = this.state.items;
@@ -105,6 +112,7 @@ class AppWrapper extends Component {
         <h1 className="text-center">{appTitle}</h1>
         <AddItem categories={categories} onAddItem={this.handleAddItem} />
         <ListWrapper
+          totalItems={items}
           items={cartItems}
           categories={Categories}
           completedItems={completedItems}

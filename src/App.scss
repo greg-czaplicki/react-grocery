@@ -17,3 +17,9 @@ body {
     font-size: 24px;
   }
 }
+
+#shopping-cart {
+  &:before {
+    font-size: 45px;
+  }
+}
