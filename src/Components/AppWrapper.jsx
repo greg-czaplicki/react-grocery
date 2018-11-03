@@ -3,6 +3,9 @@ import AddItem from "./AddItem";
 import ListWrapper from "./ListWrapper";
 import firebase from "../firebase";
 
+const firestore = firebase.firestore();
+firestore.settings({ timestampsInSnapshots: true });
+
 class AppWrapper extends Component {
   state = {
     appTitle: "Grocery List",
@@ -28,21 +31,11 @@ class AppWrapper extends Component {
   };
 
   componentDidMount() {
-    const db = firebase.firestore();
-    db.collection("items")
-      .get()
-      .then(querySnapshot => {
-        querySnapshot.forEach(doc => {
-          const items = this.state.items;
-          items.push(doc.data());
-          this.setState({
-            items
-          });
-        });
+    firestore.collection("items").onSnapshot(items =>
+      this.setState({
+        items: items.docs.map(item => item.data())
       })
-      .catch(function(error) {
-        console.log("Error getting items: ", error);
-      });
+    );
   }
 
   handleAddItem = (e, quantity) => {
@@ -54,10 +47,10 @@ class AppWrapper extends Component {
     const id = items.length + 1;
     const isComplete = false;
     const newItem = { id, itemName, itemQuantity, itemCategory, isComplete };
-    items.push(newItem);
-    this.setState({
-      items
-    });
+    firestore
+      .collection("items")
+      .doc()
+      .set(newItem);
     e.target.reset();
   };
 
