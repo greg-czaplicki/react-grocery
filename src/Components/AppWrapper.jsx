@@ -54,6 +54,27 @@ class AppWrapper extends Component {
     e.target.reset();
   };
 
+  handleDeleteDB = () => {
+    const password = window.prompt(
+      "Enter the password to clear the grocery list."
+    );
+
+    if (password === "1029") {
+      firestore
+        .collection("items")
+        .get()
+        .then(QuerySnapshot => {
+          const batch = firestore.batch();
+          QuerySnapshot.forEach(doc => {
+            batch.delete(doc.ref);
+          });
+          return batch.commit();
+        });
+    } else {
+      window.alert("The password is incorrect!");
+    }
+  };
+
   toggleCompleted = item => {
     const items = this.state.items;
     const getItem = items[item.id - 1];
@@ -81,6 +102,7 @@ class AppWrapper extends Component {
           completedItems={completedItems}
           completedCategories={completedCategories}
           toggleCompleted={this.toggleCompleted}
+          onDeleteDB={this.handleDeleteDB}
         />
       </div>
     );

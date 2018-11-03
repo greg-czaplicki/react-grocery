@@ -10,7 +10,8 @@ class ListWrapper extends Component {
       items,
       completedItems,
       completedCategories,
-      toggleCompleted
+      toggleCompleted,
+      onDeleteDB
     } = this.props;
     return (
       <React.Fragment>
@@ -32,6 +33,7 @@ class ListWrapper extends Component {
             toggleCompleted={toggleCompleted}
           />
         ))}
+        <button onClick={onDeleteDB}>Clear List?</button>
       </React.Fragment>
     );
   }
