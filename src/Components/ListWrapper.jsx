@@ -24,7 +24,7 @@ class ListWrapper extends Component {
             toggleCompleted={toggleCompleted}
           />
         ))}
-        <h2>Completed</h2>
+        {completedItems.length > 0 && <h2>Completed</h2>}
         {completedCategories.map(category => (
           <CartCategory
             key={category}
@@ -33,7 +33,11 @@ class ListWrapper extends Component {
             toggleCompleted={toggleCompleted}
           />
         ))}
-        <button onClick={onDeleteDB}>Clear List?</button>
+        {(completedItems.length > 0 || items.length > 0) && (
+          <button onClick={onDeleteDB} className="btn btn-lg">
+            Clear List?
+          </button>
+        )}
       </React.Fragment>
     );
   }

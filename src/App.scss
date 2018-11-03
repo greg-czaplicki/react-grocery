@@ -5,3 +5,15 @@ body {
 .container {
   margin: 0 auto;
 }
+
+.btn-outline-success,
+.btn-outline-danger,
+.btn-primary {
+  width: 100%;
+}
+
+.adjust-quantity {
+  input {
+    font-size: 24px;
+  }
+}

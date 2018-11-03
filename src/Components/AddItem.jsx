@@ -33,26 +33,66 @@ class AddItem extends Component {
         }}
         onReset={this.handleFormReset}
       >
-        <input
-          ref={this.itemLength}
-          type="text"
-          name="itemName"
-          autoFocus
-          placeholder="Add an item..."
-        />
-        <select name="itemCategory" id="itemCategory">
-          {categories.map(category => (
-            <option key={category}>{category}</option>
-          ))}
-        </select>
-        <div className="quantity">
-          {itemQuantity > 1 && (
-            <input type="button" value="-" onClick={this.decrementQuantity} />
-          )}
-          <span name="itemQuantity">{itemQuantity}</span>
-          <input type="button" value="+" onClick={this.incrementQuantity} />
+        <div className="form-group">
+          <label htmlFor="itemName">Item Name:</label>
+          <input
+            ref={this.itemLength}
+            type="text"
+            name="itemName"
+            autoFocus
+            placeholder="Add an item..."
+            className="form-control form-control-lg"
+          />
         </div>
-        <button type="submit">Add Item</button>
+
+        <div className="form-group">
+          <label htmlFor="itemCategory">Item Category:</label>
+          <select
+            className="form-control form-control-lg"
+            name="itemCategory"
+            id="itemCategory"
+          >
+            {categories.map(category => (
+              <option key={category}>{category}</option>
+            ))}
+          </select>
+        </div>
+
+        <div className="from-group">
+          <label htmlFor="itemQuantity">Item Quantity:</label>
+          <div className="row align-items-center">
+            <div className="col adjust-quantity">
+              {itemQuantity > 1 && (
+                <input
+                  type="button"
+                  className="btn btn-outline-danger btn-lg"
+                  value="-"
+                  onClick={this.decrementQuantity}
+                />
+              )}
+            </div>
+            <div className="col">
+              <span name="itemQuantity" className="btn btn-primary btn-lg">
+                {itemQuantity}
+              </span>
+            </div>
+            <div className="col">
+              <input
+                type="button"
+                className="btn btn-outline-success btn-lg"
+                value="+"
+                onClick={this.incrementQuantity}
+              />
+            </div>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          className="btn btn-outline-primary btn-lg btn-block my-2"
+        >
+          Add Item
+        </button>
       </form>
     );
   }

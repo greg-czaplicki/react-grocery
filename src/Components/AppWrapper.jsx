@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import AddItem from "./AddItem";
 import ListWrapper from "./ListWrapper";
 import firebase from "../firebase";
+// import { QuerySnapshot } from "@firebase/firestore-types";
 
 const firestore = firebase.firestore();
 firestore.settings({ timestampsInSnapshots: true });
@@ -76,12 +77,19 @@ class AppWrapper extends Component {
   };
 
   toggleCompleted = item => {
-    const items = this.state.items;
-    const getItem = items[item.id - 1];
-    getItem.isComplete = !getItem.isComplete;
-    this.setState({
-      items
-    });
+    const toggle = !item.isComplete;
+    firestore
+      .collection("items")
+      .where("id", "==", item.id)
+      .get()
+      .then(QuerySnapshot => {
+        QuerySnapshot.forEach(doc => {
+          firestore
+            .collection("items")
+            .doc(doc.id)
+            .update({ isComplete: toggle });
+        });
+      });
   };
 
   render() {
@@ -94,7 +102,7 @@ class AppWrapper extends Component {
     ];
     return (
       <div className="container">
-        <h1>{appTitle}</h1>
+        <h1 className="text-center">{appTitle}</h1>
         <AddItem categories={categories} onAddItem={this.handleAddItem} />
         <ListWrapper
           items={cartItems}
