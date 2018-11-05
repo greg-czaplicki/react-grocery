@@ -1,5 +1,9 @@
 body {
   margin: 50px auto;
+  @media screen and (min-width: 850px) {
+    margin: 50px 25%;
+  }
+  color: #343a40;
 }
 
 .container {
@@ -10,6 +14,8 @@ body {
 .btn-outline-danger,
 .btn-primary {
   width: 100%;
+  font-size: 24px;
+  padding: 0;
 }
 
 .adjust-quantity {
@@ -22,4 +28,38 @@ body {
   &:before {
     font-size: 45px;
   }
+}
+
+.itemQuantity {
+  font-size: 25px;
+}
+
+.addItemBtn {
+  margin: 20px 0;
+}
+
+.cartCategory {
+  text-decoration: underline;
+}
+
+.itemName {
+  color: #494f55;
+  font-weight: 300;
+
+  &.completed {
+    color: #8d969e;
+    text-decoration: line-through;
+    font-style: italic;
+  }
+}
+
+.completedCategory {
+  color: rgb(141, 141, 141) 40;
+}
+
+.hr {
+  background-color: #c4c4c4;
+  border: 0 none;
+  color: #cdcdcd;
+  height: 2px;
 }

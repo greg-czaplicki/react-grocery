@@ -9,7 +9,7 @@ class CartCategory extends Component {
     const filteredItems = items.filter(item => item.itemCategory === category);
     return (
       <React.Fragment>
-        <h4>{category}</h4>
+        <h2 className="cartCategory">{category}</h2>
         {filteredItems.map(item => (
           <CartItemName
             key={item.id}

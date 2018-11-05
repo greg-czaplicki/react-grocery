@@ -2,10 +2,15 @@ import React, { Component } from "react";
 
 class AddItem extends Component {
   state = {
-    itemQuantity: 1
+    itemQuantity: 1,
+    itemValue: ""
   };
 
-  itemLength = React.createRef();
+  toggleDisabled = e => {
+    this.setState({
+      itemValue: e.target.value
+    });
+  };
 
   incrementQuantity = () => {
     const { itemQuantity } = this.state;
@@ -36,12 +41,12 @@ class AddItem extends Component {
         <div className="form-group">
           <label htmlFor="itemName">Item Name:</label>
           <input
-            ref={this.itemLength}
             type="text"
             name="itemName"
             autoFocus
             placeholder="Add an item..."
             className="form-control form-control-lg"
+            onChange={this.toggleDisabled}
           />
         </div>
 
@@ -71,8 +76,8 @@ class AddItem extends Component {
                 />
               )}
             </div>
-            <div className="col">
-              <span name="itemQuantity" className="btn btn-primary btn-lg">
+            <div className="col text-center">
+              <span name="itemQuantity" className="itemQuantity">
                 {itemQuantity}
               </span>
             </div>
@@ -89,7 +94,8 @@ class AddItem extends Component {
 
         <button
           type="submit"
-          className="btn btn-outline-primary btn-lg btn-block my-2"
+          className="btn btn-outline-primary btn-lg btn-block addItemBtn"
+          disabled={this.state.itemValue === ""}
         >
           Add Item
         </button>

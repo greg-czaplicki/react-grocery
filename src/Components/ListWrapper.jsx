@@ -30,7 +30,12 @@ class ListWrapper extends Component {
             toggleCompleted={toggleCompleted}
           />
         ))}
-        {completedItems.length > 0 && <h2>Completed</h2>}
+        {completedItems.length > 0 && (
+          <div>
+            <hr className="hr" />
+            <h2 className="completedCategory text-center">Completed</h2>
+          </div>
+        )}
         {completedCategories.map(category => (
           <CartCategory
             key={category}
@@ -42,7 +47,7 @@ class ListWrapper extends Component {
         {(completedItems.length > 0 || items.length > 0) && (
           <button
             onClick={onDeleteDB}
-            className="btn btn-warning btn-block btn-lg"
+            className="btn btn-warning btn-block btn-lg mt-4"
           >
             Clear List?
           </button>

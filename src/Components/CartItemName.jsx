@@ -4,16 +4,19 @@ class CartItemName extends Component {
   state = {};
   render() {
     const { item, toggleCompleted } = this.props;
+    let classes = "itemName ";
+    classes += item.isComplete === true ? "completed" : "";
     return (
       <React.Fragment>
-        <p
+        <h3
           onClick={() => {
             toggleCompleted(item);
           }}
+          className={classes}
         >
-          {item.itemName}
+          • {item.itemName}
           {item.itemQuantity > 1 ? ` - ${item.itemQuantity}` : false}
-        </p>
+        </h3>
       </React.Fragment>
     );
   }
