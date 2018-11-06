@@ -23,12 +23,14 @@ class ListWrapper extends Component {
           </span>
         )}
         {categories.map(category => (
-          <CartCategory
-            key={category}
-            items={items}
-            category={category}
-            toggleCompleted={toggleCompleted}
-          />
+          <div className={`item-card ${category}`}>
+            <CartCategory
+              key={category}
+              items={items}
+              category={category}
+              toggleCompleted={toggleCompleted}
+            />
+          </div>
         ))}
         {completedItems.length > 0 && (
           <div>
@@ -37,12 +39,15 @@ class ListWrapper extends Component {
           </div>
         )}
         {completedCategories.map(category => (
-          <CartCategory
-            key={category}
-            items={completedItems}
-            category={category}
-            toggleCompleted={toggleCompleted}
-          />
+          <div className={`item-card ${category}`}>
+            <CartCategory
+              key={category}
+              items={completedItems}
+              category={category}
+              toggleCompleted={toggleCompleted}
+              classes="completedCategory"
+            />
+          </div>
         ))}
         {(completedItems.length > 0 || items.length > 0) && (
           <button

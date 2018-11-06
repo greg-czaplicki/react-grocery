@@ -1,21 +1,26 @@
 body {
-  margin: 50px auto;
-  @media screen and (min-width: 850px) {
-    margin: 50px 25%;
-  }
   color: #343a40;
+  background-color: #ebebeb;
 }
 
 .container {
-  margin: 0 auto;
+  margin-top: 30px;
+  padding: 20px;
+  width: 90%;
 }
 
 .btn-outline-success,
-.btn-outline-danger,
-.btn-primary {
+.btn-outline-danger {
   width: 100%;
-  font-size: 24px;
+  font-size: 35px;
   padding: 0;
+  max-height: 48px;
+}
+
+.symbol {
+  height: 48px;
+  display: block;
+  line-height: 40px;
 }
 
 .adjust-quantity {
@@ -40,21 +45,20 @@ body {
 
 .cartCategory {
   text-decoration: underline;
+  color: #fff;
 }
 
 .itemName {
-  color: #494f55;
+  color: #fff;
   font-weight: 300;
+  background-color: rgba(240, 240, 240, 0.178);
+  border-radius: 5px;
+  padding: 5px;
 
   &.completed {
-    color: #8d969e;
     text-decoration: line-through;
     font-style: italic;
   }
-}
-
-.completedCategory {
-  color: rgb(141, 141, 141) 40;
 }
 
 .hr {
@@ -62,4 +66,28 @@ body {
   border: 0 none;
   color: #cdcdcd;
   height: 2px;
+}
+
+.item-card {
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  margin: 10px 0;
+}
+
+.Deli {
+  background: #5c88e7;
+  background: -webkit-linear-gradient(to right, #67cce6, #5c88e7);
+  background: linear-gradient(to right, #67cce6, #5c88e7);
+}
+
+.Produce {
+  background: #58d395;
+  background: -webkit-linear-gradient(to right, #58d395, #37cecd);
+  background: linear-gradient(to right, #58d395, #37cecd);
+}
+
+.Snacks {
+  background: #58d395;
+  background: -webkit-linear-gradient(to right, #58d395, #37cecd);
+  background: linear-gradient(to right, #de8fbb, #e97193);
 }

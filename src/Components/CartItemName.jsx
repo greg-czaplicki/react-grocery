@@ -8,15 +8,15 @@ class CartItemName extends Component {
     classes += item.isComplete === true ? "completed" : "";
     return (
       <React.Fragment>
-        <h3
+        <h4
           onClick={() => {
             toggleCompleted(item);
           }}
           className={classes}
         >
-          • {item.itemName}
-          {item.itemQuantity > 1 ? ` - ${item.itemQuantity}` : false}
-        </h3>
+          {item.itemName}
+          {item.itemQuantity > 1 ? ` - (${item.itemQuantity})` : false}
+        </h4>
       </React.Fragment>
     );
   }

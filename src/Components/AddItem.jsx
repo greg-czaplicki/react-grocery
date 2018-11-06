@@ -68,12 +68,13 @@ class AddItem extends Component {
           <div className="row align-items-center">
             <div className="col adjust-quantity">
               {itemQuantity > 1 && (
-                <input
+                <button
                   type="button"
                   className="btn btn-outline-danger btn-lg"
-                  value="-"
                   onClick={this.decrementQuantity}
-                />
+                >
+                  <span className="symbol">-</span>
+                </button>
               )}
             </div>
             <div className="col text-center">
@@ -82,19 +83,20 @@ class AddItem extends Component {
               </span>
             </div>
             <div className="col">
-              <input
+              <button
                 type="button"
                 className="btn btn-outline-success btn-lg"
-                value="+"
                 onClick={this.incrementQuantity}
-              />
+              >
+                <span className="symbol">+</span>
+              </button>
             </div>
           </div>
         </div>
 
         <button
           type="submit"
-          className="btn btn-outline-primary btn-lg btn-block addItemBtn"
+          className="btn btn-primary btn-lg btn-block addItemBtn"
           disabled={this.state.itemValue === ""}
         >
           Add Item
