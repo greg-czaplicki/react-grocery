@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import AddItem from "./AddItem";
-import ListWrapper from "./ListWrapper";
+import AddItem from "./AddItem/AddItem";
+import List from "./List/List";
+import CompletedList from "./List/CompletedList";
 import firebase from "../firebase";
 
 const firestore = firebase.firestore();
@@ -8,7 +9,6 @@ firestore.settings({ timestampsInSnapshots: true });
 
 class AppWrapper extends Component {
   state = {
-    appTitle: "Grocery List",
     categories: [
       "Produce",
       "Deli",
@@ -30,7 +30,7 @@ class AppWrapper extends Component {
     items: []
   };
 
-  componentDidMount() {
+  componentWillMount() {
     firestore.collection("items").onSnapshot(items =>
       this.setState({
         items: items.docs.map(item => item.data())
@@ -51,9 +51,8 @@ class AppWrapper extends Component {
     itemName = this.titleCaseItem(itemName);
     const itemCategory = e.target.itemCategory.value;
     const itemQuantity = quantity;
-    const items = this.state.items;
-    const id = items.length + 1;
     const isComplete = false;
+    const id = this.state.items.length;
     const newItem = { id, itemName, itemQuantity, itemCategory, isComplete };
     firestore
       .collection("items")
@@ -99,27 +98,45 @@ class AppWrapper extends Component {
       });
   };
 
+  filterItems = (cat, option) => {
+    const filteredItems = this.state.items.filter(
+      item => item.itemCategory === cat
+    );
+    return filteredItems.filter(item => item.isComplete === option);
+  };
+
   render() {
-    const { items, appTitle, categories } = this.state;
-    const cartItems = items.filter(item => item.isComplete === false);
-    const completedItems = items.filter(item => item.isComplete === true);
-    const Categories = [...new Set(cartItems.map(item => item.itemCategory))];
-    const completedCategories = [
-      ...new Set(completedItems.map(item => item.itemCategory))
-    ];
+    const { categories, items } = this.state;
     return (
-      <div className="container">
-        <h1 className="text-center">{appTitle}</h1>
-        <AddItem categories={categories} onAddItem={this.handleAddItem} />
-        <ListWrapper
-          totalItems={items}
-          items={cartItems}
-          categories={Categories}
-          completedItems={completedItems}
-          completedCategories={completedCategories}
-          toggleCompleted={this.toggleCompleted}
-          onDeleteDB={this.handleDeleteDB}
-        />
+      <div className="container-fluid">
+        <div className="addItemWrapper">
+          <h1 className="text-center">Grocery List</h1>
+          <AddItem categories={categories} onAddItem={this.handleAddItem} />
+        </div>
+        {categories.map(category => (
+          <React.Fragment>
+            <List
+              category={category}
+              items={this.filterItems(category, false)}
+              toggleCompleted={this.toggleCompleted}
+            />
+            <CompletedList
+              title="Completed"
+              category={category}
+              items={this.filterItems(category, true)}
+              toggleCompleted={this.toggleCompleted}
+            />
+          </React.Fragment>
+        ))}
+
+        {items.length > 0 && (
+          <button
+            onClick={this.handleDeleteDB}
+            className="btn btn-warning btn-lg"
+          >
+            Clear Grocery List?
+          </button>
+        )}
       </div>
     );
   }

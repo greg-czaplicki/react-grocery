@@ -1,16 +1,25 @@
 body {
   color: #343a40;
-  background-color: #ebebeb;
 }
 
-.container {
-  margin-top: 30px;
-  padding: 20px;
-  width: 90%;
+.container-fluid {
+  margin: 0;
+  padding: 0;
 }
 
-.btn-outline-success,
-.btn-outline-danger {
+.addItemWrapper {
+  background: #58d395;
+  padding: 50px 500px 10px 500px;
+  margin: 0 auto;
+}
+
+.listWrapper {
+  padding: 20px 500px;
+  margin: 0 auto;
+}
+
+.btn-success,
+.btn-danger {
   width: 100%;
   font-size: 35px;
   padding: 0;
@@ -76,8 +85,8 @@ body {
 
 .Deli {
   background: #5c88e7;
-  background: -webkit-linear-gradient(to right, #67cce6, #5c88e7);
-  background: linear-gradient(to right, #67cce6, #5c88e7);
+  background: -webkit-linear-gradient(to left, #67cce6, #5c88e7);
+  background: linear-gradient(to left, #67cce6, #5c88e7);
 }
 
 .Produce {
@@ -87,7 +96,7 @@ body {
 }
 
 .Snacks {
-  background: #58d395;
-  background: -webkit-linear-gradient(to right, #58d395, #37cecd);
+  background: #e97193;
+  background: -webkit-linear-gradient(to right, #de8fbb, #e97193);
   background: linear-gradient(to right, #de8fbb, #e97193);
 }

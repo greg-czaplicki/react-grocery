@@ -70,7 +70,7 @@ class AddItem extends Component {
               {itemQuantity > 1 && (
                 <button
                   type="button"
-                  className="btn btn-outline-danger btn-lg"
+                  className="btn btn-danger btn-lg"
                   onClick={this.decrementQuantity}
                 >
                   <span className="symbol">-</span>
@@ -85,7 +85,7 @@ class AddItem extends Component {
             <div className="col">
               <button
                 type="button"
-                className="btn btn-outline-success btn-lg"
+                className="btn btn-success btn-lg"
                 onClick={this.incrementQuantity}
               >
                 <span className="symbol">+</span>
