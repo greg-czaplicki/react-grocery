@@ -70,7 +70,7 @@ class AddItem extends Component {
               {itemQuantity > 1 && (
                 <button
                   type="button"
-                  className="btn btn-danger btn-lg"
+                  className="btn btn-dec btn-lg"
                   onClick={this.decrementQuantity}
                 >
                   <span className="symbol">-</span>
@@ -85,7 +85,7 @@ class AddItem extends Component {
             <div className="col">
               <button
                 type="button"
-                className="btn btn-success btn-lg"
+                className="btn btn-inc btn-lg"
                 onClick={this.incrementQuantity}
               >
                 <span className="symbol">+</span>
@@ -96,7 +96,7 @@ class AddItem extends Component {
 
         <button
           type="submit"
-          className="btn btn-primary btn-lg btn-block addItemBtn"
+          className="btn btn-addItem btn-lg"
           disabled={this.state.itemValue === ""}
         >
           Add Item

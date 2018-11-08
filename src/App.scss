@@ -1,102 +1,94 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700");
+
 body {
+  font-family: "Raleway", sans-serif;
   color: #343a40;
 }
 
 .container-fluid {
-  margin: 0;
+  width: 100%;
   padding: 0;
 }
 
 .addItemWrapper {
-  background: #58d395;
-  padding: 50px 500px 10px 500px;
-  margin: 0 auto;
+  background: #73bc9d;
+  background: -webkit-linear-gradient(to bottom, #73bc9d, #dbddaf);
+  background: linear-gradient(to bottom, #73bc9d, #a1eccd);
+  color: #fff;
+  padding: 20px;
+
+  button {
+    width: 100%;
+    max-height: 48px;
+    margin: 10px 0;
+
+    &.btn-inc,
+    &.btn-dec {
+      background-color: #fff;
+      opacity: 0.8;
+    }
+
+    .symbol {
+      font-size: 45px;
+      display: block;
+      color: rgba(115, 188, 157, 1);
+      position: relative;
+      bottom: 17px;
+
+      &:hover {
+        color: rgb(155, 155, 155);
+      }
+    }
+
+    &.btn-addItem {
+      background-color: #00aeff;
+      color: #fff;
+    }
+  }
+
+  .itemQuantity {
+    font-size: 28px;
+  }
 }
 
 .listWrapper {
-  padding: 20px 500px;
-  margin: 0 auto;
-}
+  padding: 20px;
 
-.btn-success,
-.btn-danger {
-  width: 100%;
-  font-size: 35px;
-  padding: 0;
-  max-height: 48px;
-}
-
-.symbol {
-  height: 48px;
-  display: block;
-  line-height: 40px;
-}
-
-.adjust-quantity {
-  input {
-    font-size: 24px;
+  .deleteDb-button {
+    width: 100%;
   }
 }
 
-#shopping-cart {
-  &:before {
-    font-size: 45px;
-  }
-}
-
-.itemQuantity {
-  font-size: 25px;
-}
-
-.addItemBtn {
-  margin: 20px 0;
-}
-
-.cartCategory {
-  text-decoration: underline;
-  color: #fff;
-}
-
-.itemName {
-  color: #fff;
+.title {
   font-weight: 300;
-  background-color: rgba(240, 240, 240, 0.178);
-  border-radius: 5px;
-  padding: 5px;
+}
 
+.category-title {
+  // border-bottom: 3px solid #00aeff;
+  // border-radius: 5px;
+  // width: 50%;
+}
+
+.item {
+  font-weight: 400;
+  background-color: rgba(224, 224, 224, 0.3);
+  border-radius: 5px;
+  padding: 5px 2px;
   &.completed {
+    color: rgb(180, 180, 180);
     text-decoration: line-through;
     font-style: italic;
   }
 }
 
-.hr {
-  background-color: #c4c4c4;
-  border: 0 none;
-  color: #cdcdcd;
-  height: 2px;
-}
+// .item-card {
+//   padding: 0.5rem 1rem;
+//   border-radius: 0.3rem;
+//   margin: 10px 0;
+// }
 
-.item-card {
-  padding: 0.5rem 1rem;
-  border-radius: 0.3rem;
-  margin: 10px 0;
-}
-
-.Deli {
-  background: #5c88e7;
-  background: -webkit-linear-gradient(to left, #67cce6, #5c88e7);
-  background: linear-gradient(to left, #67cce6, #5c88e7);
-}
-
-.Produce {
-  background: #58d395;
-  background: -webkit-linear-gradient(to right, #58d395, #37cecd);
-  background: linear-gradient(to right, #58d395, #37cecd);
-}
-
-.Snacks {
-  background: #e97193;
-  background: -webkit-linear-gradient(to right, #de8fbb, #e97193);
-  background: linear-gradient(to right, #de8fbb, #e97193);
-}
+// .Deli {
+//   background: #5c88e7;
+//   background: -webkit-linear-gradient(to left, #67cce6, #5c88e7);
+//   background: linear-gradient(to left, #67cce6, #5c88e7);
+// }

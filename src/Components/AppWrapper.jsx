@@ -110,33 +110,35 @@ class AppWrapper extends Component {
     return (
       <div className="container-fluid">
         <div className="addItemWrapper">
-          <h1 className="text-center">Grocery List</h1>
+          <h1 className="text-center title">Grocery List</h1>
           <AddItem categories={categories} onAddItem={this.handleAddItem} />
         </div>
-        {categories.map(category => (
-          <React.Fragment>
+        <div className="listWrapper">
+          {categories.map(category => (
             <List
               category={category}
               items={this.filterItems(category, false)}
               toggleCompleted={this.toggleCompleted}
             />
+          ))}
+          <hr />
+          {categories.map(category => (
             <CompletedList
-              title="Completed"
               category={category}
               items={this.filterItems(category, true)}
               toggleCompleted={this.toggleCompleted}
             />
-          </React.Fragment>
-        ))}
+          ))}
 
-        {items.length > 0 && (
-          <button
-            onClick={this.handleDeleteDB}
-            className="btn btn-warning btn-lg"
-          >
-            Clear Grocery List?
-          </button>
-        )}
+          {items.length > 0 && (
+            <button
+              onClick={this.handleDeleteDB}
+              className="btn btn-outline-danger btn-lg deleteDb-button"
+            >
+              Clear Grocery List?
+            </button>
+          )}
+        </div>
       </div>
     );
   }
