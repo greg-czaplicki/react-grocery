@@ -68,14 +68,17 @@ body {
   @media screen and (min-width: 1024px) {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;
+    grid-gap: 0 15px;
+    grid-template-rows: min-content;
     padding: 30px 70px;
+    height: max-content;
   }
 
   .category-group,
   .category-group-complete {
     border: 1px solid #dadada;
     border-radius: 5px;
+    margin-bottom: 15px;
 
     .category-title {
       font-weight: 300;
@@ -93,8 +96,9 @@ body {
     .item {
       font-weight: 400;
       background-color: rgba(224, 224, 224, 0.3);
-      border-radius: 5px;
       padding: 10px;
+      margin: 10px;
+      border-radius: 5px;
       &.completed {
         color: rgb(180, 180, 180);
         text-decoration: line-through;
