@@ -48,17 +48,22 @@ class AppWrapper extends Component {
   handleAddItem = (e, quantity) => {
     e.preventDefault();
     let itemName = e.target.itemName.value;
-    itemName = this.titleCaseItem(itemName);
-    const itemCategory = e.target.itemCategory.value;
-    const itemQuantity = quantity;
-    const isComplete = false;
-    const id = this.state.items.length;
-    const newItem = { id, itemName, itemQuantity, itemCategory, isComplete };
-    firestore
-      .collection("items")
-      .doc()
-      .set(newItem);
-    e.target.reset();
+    if (itemName.trim() === "") {
+      alert("Item field cannot be empty");
+      e.target.itemName.value = "";
+    } else {
+      itemName = this.titleCaseItem(itemName);
+      const itemCategory = e.target.itemCategory.value;
+      const itemQuantity = quantity;
+      const isComplete = false;
+      const id = this.state.items.length;
+      const newItem = { id, itemName, itemQuantity, itemCategory, isComplete };
+      firestore
+        .collection("items")
+        .doc()
+        .set(newItem);
+      e.target.reset();
+    }
   };
 
   handleDeleteDB = () => {
