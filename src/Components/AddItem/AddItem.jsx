@@ -73,7 +73,7 @@ class AddItem extends Component {
                   className="btn btn-dec btn-lg"
                   onClick={this.decrementQuantity}
                 >
-                  <span className="symbol">-</span>
+                  <i class="fa fa-minus" />
                 </button>
               )}
             </div>
@@ -88,7 +88,7 @@ class AddItem extends Component {
                 className="btn btn-inc btn-lg"
                 onClick={this.incrementQuantity}
               >
-                <span className="symbol">+</span>
+                <i class="fa fa-plus" />
               </button>
             </div>
           </div>

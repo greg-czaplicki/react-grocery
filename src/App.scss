@@ -11,29 +11,33 @@ body {
 }
 
 .addItemWrapper {
+  @media screen and (min-width: 1024px) {
+    padding: 20px 25vw;
+  }
+
   background: #73bc9d;
   background: -webkit-linear-gradient(to bottom, #73bc9d, #dbddaf);
   background: linear-gradient(to bottom, #73bc9d, #a1eccd);
   color: #fff;
-  padding: 20px;
+  padding: 20px 40px;
 
   button {
     width: 100%;
-    max-height: 48px;
     margin: 10px 0;
 
     &.btn-inc,
     &.btn-dec {
       background-color: #fff;
       opacity: 0.8;
+      display: flex;
+      justify-content: center;
+      align-content: center;
     }
 
-    .symbol {
-      font-size: 45px;
-      display: block;
+    .fa-plus,
+    .fa-minus {
+      font-size: 25px;
       color: rgba(115, 188, 157, 1);
-      position: relative;
-      bottom: 17px;
 
       &:hover {
         color: rgb(155, 155, 155);
@@ -47,12 +51,16 @@ body {
   }
 
   .itemQuantity {
-    font-size: 28px;
+    font-size: 35px;
+    font-weight: 700;
   }
 }
 
 .listWrapper {
-  padding: 20px;
+  @media screen and (min-width: 1024px) {
+    padding: 30px 25vw;
+  }
+  padding: 20px 40px;
 
   .deleteDb-button {
     width: 100%;
