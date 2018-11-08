@@ -6,7 +6,7 @@ class AddItem extends Component {
     itemValue: ""
   };
 
-  toggleDisabled = e => {
+  validateProperty = e => {
     this.setState({
       itemValue: e.target.value
     });
@@ -29,7 +29,7 @@ class AddItem extends Component {
   };
 
   render() {
-    const { categories, onAddItem } = this.props;
+    const { categories, onAddItem, error } = this.props;
     const { itemQuantity } = this.state;
     return (
       <form
@@ -46,8 +46,9 @@ class AddItem extends Component {
             autoFocus
             placeholder="Add an item..."
             className="form-control form-control-lg"
-            onChange={this.toggleDisabled}
+            onChange={this.validateProperty}
           />
+          {error && <div className="alert alert-danger">{error}</div>}
         </div>
 
         <div className="form-group">
@@ -73,7 +74,7 @@ class AddItem extends Component {
                   className="btn btn-dec btn-lg"
                   onClick={this.decrementQuantity}
                 >
-                  <i class="fa fa-minus" />
+                  <i className="fa fa-minus" />
                 </button>
               )}
             </div>
@@ -88,7 +89,7 @@ class AddItem extends Component {
                 className="btn btn-inc btn-lg"
                 onClick={this.incrementQuantity}
               >
-                <i class="fa fa-plus" />
+                <i className="fa fa-plus" />
               </button>
             </div>
           </div>

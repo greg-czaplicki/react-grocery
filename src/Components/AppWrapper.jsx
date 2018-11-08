@@ -27,7 +27,8 @@ class AppWrapper extends Component {
       "Miscellaneous",
       "Recipes"
     ],
-    items: []
+    items: [],
+    errors: {}
   };
 
   componentWillMount() {
@@ -38,6 +39,15 @@ class AppWrapper extends Component {
     );
   }
 
+  validate = e => {
+    const errors = {};
+
+    if (e.target.itemName.value.trim() === "")
+      errors.itemName = "Item name is required.";
+
+    return Object.keys(errors).length === 0 ? null : errors;
+  };
+
   titleCaseItem = name => {
     return name
       .split(" ")
@@ -47,23 +57,26 @@ class AppWrapper extends Component {
 
   handleAddItem = (e, quantity) => {
     e.preventDefault();
+
+    const errors = this.validate(e);
+    this.setState({
+      errors: errors || {}
+    });
+    if (errors) return;
+
     let itemName = e.target.itemName.value;
-    if (itemName.trim() === "") {
-      alert("Item field cannot be empty");
-      e.target.itemName.value = "";
-    } else {
-      itemName = this.titleCaseItem(itemName);
-      const itemCategory = e.target.itemCategory.value;
-      const itemQuantity = quantity;
-      const isComplete = false;
-      const id = this.state.items.length;
-      const newItem = { id, itemName, itemQuantity, itemCategory, isComplete };
-      firestore
-        .collection("items")
-        .doc()
-        .set(newItem);
-      e.target.reset();
-    }
+    itemName = this.titleCaseItem(itemName);
+    const itemCategory = e.target.itemCategory.value;
+    const itemQuantity = quantity;
+    const isComplete = false;
+    const id = this.state.items.length;
+    const newItem = { id, itemName, itemQuantity, itemCategory, isComplete };
+
+    firestore
+      .collection("items")
+      .doc()
+      .set(newItem);
+    e.target.reset();
   };
 
   handleDeleteDB = () => {
@@ -111,12 +124,16 @@ class AppWrapper extends Component {
   };
 
   render() {
-    const { categories, items } = this.state;
+    const { categories, items, errors } = this.state;
     return (
       <div className="container-fluid">
         <div className="addItemWrapper">
           <h1 className="text-center title">Grocery List</h1>
-          <AddItem categories={categories} onAddItem={this.handleAddItem} />
+          <AddItem
+            categories={categories}
+            onAddItem={this.handleAddItem}
+            error={errors.itemName}
+          />
         </div>
         <div className="listWrapper">
           {categories.map(category => (
