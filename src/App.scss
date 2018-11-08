@@ -6,13 +6,21 @@ body {
 }
 
 .container-fluid {
-  width: 100%;
+  display: grid;
+  grid-template-columns: 25% auto;
   padding: 0;
+  height: 100vh;
+  @media screen and (max-width: 1550px) {
+    grid-template-columns: 35% auto;
+  }
+
+  @media screen and (max-width: 1024px) {
+    display: block;
+  }
 }
 
 .addItemWrapper {
   @media screen and (min-width: 1024px) {
-    padding: 20px 25vw;
   }
 
   background: #73bc9d;
@@ -58,35 +66,53 @@ body {
 
 .listWrapper {
   @media screen and (min-width: 1024px) {
-    padding: 30px 25vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    padding: 30px 70px;
   }
-  padding: 20px 40px;
+
+  .category-group,
+  .category-group-complete {
+    border: 1px solid #dadada;
+    border-radius: 5px;
+
+    .category-title {
+      font-weight: 300;
+      background: #a1eccd;
+      padding: 10px;
+
+      &-complete {
+        font-weight: 300;
+        background: #dddddd;
+        color: rgb(139, 139, 139);
+        padding: 10px;
+      }
+    }
+
+    .item {
+      font-weight: 400;
+      background-color: rgba(224, 224, 224, 0.3);
+      border-radius: 5px;
+      padding: 10px;
+      &.completed {
+        color: rgb(180, 180, 180);
+        text-decoration: line-through;
+        font-style: italic;
+      }
+    }
+  }
+
+  padding: 15px;
 
   .deleteDb-button {
+    max-height: 48px;
     width: 100%;
   }
 }
 
 .title {
   font-weight: 300;
-}
-
-.category-title {
-  // border-bottom: 3px solid #00aeff;
-  // border-radius: 5px;
-  // width: 50%;
-}
-
-.item {
-  font-weight: 400;
-  background-color: rgba(224, 224, 224, 0.3);
-  border-radius: 5px;
-  padding: 5px 2px;
-  &.completed {
-    color: rgb(180, 180, 180);
-    text-decoration: line-through;
-    font-style: italic;
-  }
 }
 
 // .item-card {

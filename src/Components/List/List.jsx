@@ -6,7 +6,7 @@ class List extends Component {
     const { items, category, toggleCompleted } = this.props;
     return (
       items.length > 0 && (
-        <div>
+        <div className="category-group">
           <h3 className="category-title">{category}</h3>
           <div>
             {items.map(item => (

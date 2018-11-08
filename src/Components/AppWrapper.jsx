@@ -42,8 +42,10 @@ class AppWrapper extends Component {
   validate = e => {
     const errors = {};
 
-    if (e.target.itemName.value.trim() === "")
+    if (e.target.itemName.value.trim() === "") {
       errors.itemName = "Item name is required.";
+      e.target.itemName.value = "";
+    }
 
     return Object.keys(errors).length === 0 ? null : errors;
   };

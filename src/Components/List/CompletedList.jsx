@@ -6,8 +6,8 @@ class CompletedList extends Component {
     const { items, category, toggleCompleted } = this.props;
     return (
       items.length > 0 && (
-        <div>
-          <h3>{category}</h3>
+        <div className="category-group-complete">
+          <h3 className="category-title-complete">{category}</h3>
           <div>
             {items.map(item => (
               <Item item={item} toggleCompleted={toggleCompleted} />
