@@ -6,13 +6,13 @@ class List extends Component {
     const { items, category, toggleCompleted } = this.props;
     return (
       items.length > 0 && (
-        <div className="category-group">
-          <h3 className="category-title">{category}</h3>
-          <div>
-            {items.map(item => (
-              <Item item={item} toggleCompleted={toggleCompleted} />
-            ))}
-          </div>
+        <div className="list-group mb-4">
+          <h4 className="list-group-item list-group-item-action active">
+            {category}
+          </h4>
+          {items.map(item => (
+            <Item item={item} toggleCompleted={toggleCompleted} />
+          ))}
         </div>
       )
     );

@@ -3,6 +3,7 @@
 body {
   font-family: "Raleway", sans-serif;
   color: #343a40;
+  font-size: 16px;
 }
 
 .container-fluid {
@@ -20,9 +21,6 @@ body {
 }
 
 .addItemWrapper {
-  @media screen and (min-width: 1024px) {
-  }
-
   background: #73bc9d;
   background: -webkit-linear-gradient(to bottom, #73bc9d, #dbddaf);
   background: linear-gradient(to bottom, #73bc9d, #a1eccd);
@@ -60,7 +58,6 @@ body {
 
   .itemQuantity {
     font-size: 35px;
-    font-weight: 700;
   }
 }
 
@@ -68,50 +65,16 @@ body {
   @media screen and (min-width: 1024px) {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 0 15px;
-    grid-template-rows: min-content;
+    grid-gap: 0 20px;
     padding: 30px 70px;
-    height: max-content;
+    height: 100vh;
   }
-
-  .category-group,
-  .category-group-complete {
-    border: 1px solid #dadada;
-    border-radius: 5px;
-    margin-bottom: 15px;
-
-    .category-title {
-      font-weight: 300;
-      background: #a1eccd;
-      padding: 10px;
-
-      &-complete {
-        font-weight: 300;
-        background: #dddddd;
-        color: rgb(139, 139, 139);
-        padding: 10px;
-      }
-    }
-
-    .item {
-      font-weight: 400;
-      background-color: rgba(224, 224, 224, 0.3);
-      padding: 10px;
-      margin: 10px;
-      border-radius: 5px;
-      &.completed {
-        color: rgb(180, 180, 180);
-        text-decoration: line-through;
-        font-style: italic;
-      }
-    }
-  }
-
-  padding: 15px;
 
   .deleteDb-button {
     max-height: 48px;
     width: 100%;
+    grid-row: 500;
+    grid-column: -3/-1;
   }
 }
 
@@ -119,14 +82,23 @@ body {
   font-weight: 300;
 }
 
-// .item-card {
-//   padding: 0.5rem 1rem;
-//   border-radius: 0.3rem;
-//   margin: 10px 0;
-// }
+.list-group-item {
+  &.list-group-item {
+    &-secondary {
+      color: rgb(94, 94, 94);
+    }
 
-// .Deli {
-//   background: #5c88e7;
-//   background: -webkit-linear-gradient(to left, #67cce6, #5c88e7);
-//   background: linear-gradient(to left, #67cce6, #5c88e7);
-// }
+    &-action {
+      &.item.completed {
+        color: #a0a0a0;
+        font-style: italic;
+        text-decoration: line-through;
+      }
+
+      &.active {
+        background-color: #8fd8ba;
+        border-color: #8fd8ba;
+      }
+    }
+  }
+}

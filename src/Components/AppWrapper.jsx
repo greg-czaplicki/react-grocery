@@ -157,7 +157,7 @@ class AppWrapper extends Component {
           {items.length > 0 && (
             <button
               onClick={this.handleDeleteDB}
-              className="btn btn-outline-danger btn-lg deleteDb-button"
+              className="btn btn-danger btn-lg btn-block deleteDb-button mt-4"
             >
               Clear Grocery List?
             </button>
