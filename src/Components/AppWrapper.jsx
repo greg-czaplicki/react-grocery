@@ -138,6 +138,12 @@ class AppWrapper extends Component {
           />
         </div>
         <div className="listWrapper">
+          {items.length === 0 && (
+            <h4 className="empty-title">
+              Your grocery list is currently empty.
+            </h4>
+          )}
+
           {categories.map(category => (
             <List
               category={category}
@@ -145,7 +151,9 @@ class AppWrapper extends Component {
               toggleCompleted={this.toggleCompleted}
             />
           ))}
-          <hr />
+
+          {items.length > 0 && <h4 className="completed-title">Completed</h4>}
+
           {categories.map(category => (
             <CompletedList
               category={category}
