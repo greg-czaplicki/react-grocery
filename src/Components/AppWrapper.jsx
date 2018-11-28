@@ -42,20 +42,29 @@ class AppWrapper extends Component {
   validate = e => {
     const errors = {};
 
-    if (e.target.itemName.value.trim() === "") {
+    if (
+      e.target.itemCategory.value !== "Recipes" &&
+      e.target.itemName.value.trim() === ""
+    ) {
       errors.itemName = "Item name is required.";
       e.target.itemName.value = "";
     }
 
-    // if (e.target.recipeName.value.trim() === "") {
-    //   errors.recipeName = "Recipe name is required.";
-    //   e.target.recipeName.value = "";
-    // }
+    if (
+      e.target.itemCategory.value === "Recipes" &&
+      e.target.recipeName.value.trim() === ""
+    ) {
+      errors.recipeName = "Recipe name is required.";
+      e.target.recipeName.value = "";
+    }
 
-    // if (e.target.recipeName.value.trim() === "") {
-    //   errors.recipeName = "Recipe URL is required.";
-    //   e.target.recipeName.value = "";
-    // }
+    if (
+      e.target.itemCategory.value === "Recipes" &&
+      e.target.recipeURL.value.trim() === ""
+    ) {
+      errors.recipeURL = "Recipe URL is required.";
+      e.target.recipeURL.value = "";
+    }
 
     return Object.keys(errors).length === 0 ? null : errors;
   };
@@ -68,30 +77,33 @@ class AppWrapper extends Component {
   };
 
   handleAddRecipe = e => {
-    // const errors = this.validate(e);
-    // this.setState({
-    //   errors: errors || {}
-    // });
-    // if (errors) return;
     e.preventDefault();
+
+    const errors = this.validate(e);
+    this.setState({
+      errors: errors || {}
+    });
+    if (errors) return;
+
     let recipeName = e.target.recipeName.value;
+    let recipeURL = e.target.recipeURL.value;
     recipeName = this.titleCaseItem(recipeName);
-    console.log(recipeName);
-    // firestore
-    //   .collection("recipes")
-    //   .doc()
-    //   .set(recipeName);
-    // e.target.reset();
+    let recipe = { recipeName, recipeURL };
+    firestore
+      .collection("recipes")
+      .doc()
+      .set(recipe);
+    e.target.reset();
   };
 
   handleAddItem = (e, quantity) => {
     e.preventDefault();
 
-    // const errors = this.validate(e);
-    // this.setState({
-    //   errors: errors || {}
-    // });
-    // if (errors) return;
+    const errors = this.validate(e);
+    this.setState({
+      errors: errors || {}
+    });
+    if (errors) return;
 
     let itemName = e.target.itemName.value;
     itemName = this.titleCaseItem(itemName);
@@ -162,7 +174,7 @@ class AppWrapper extends Component {
             categories={categories}
             onAddItem={this.handleAddItem}
             onAddRecipe={this.handleAddRecipe}
-            error={errors.itemName}
+            error={errors}
           />
         </div>
         <div className="listWrapper">

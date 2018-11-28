@@ -60,7 +60,9 @@ class AddItem extends Component {
               className="form-control form-control-lg"
               onChange={this.validateProperty}
             />
-            {error && <div className="alert alert-danger">{error}</div>}
+            {error.itemName && (
+              <div className="alert alert-danger">{error.itemName}</div>
+            )}
           </div>
         )}
 
@@ -75,7 +77,9 @@ class AddItem extends Component {
               className="form-control form-control-lg"
               onChange={this.validateProperty}
             />
-            {error && <div className="alert alert-danger">{error}</div>}
+            {error.recipeName && (
+              <div className="alert alert-danger">{error.recipeName}</div>
+            )}
           </div>
         )}
 
@@ -89,7 +93,9 @@ class AddItem extends Component {
               className="form-control form-control-lg"
               onChange={this.validateProperty}
             />
-            {error && <div className="alert alert-danger">{error}</div>}
+            {error.recipeURL && (
+              <div className="alert alert-danger">{error.recipeURL}</div>
+            )}
           </div>
         )}
 
