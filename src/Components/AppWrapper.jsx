@@ -47,6 +47,16 @@ class AppWrapper extends Component {
       e.target.itemName.value = "";
     }
 
+    // if (e.target.recipeName.value.trim() === "") {
+    //   errors.recipeName = "Recipe name is required.";
+    //   e.target.recipeName.value = "";
+    // }
+
+    // if (e.target.recipeName.value.trim() === "") {
+    //   errors.recipeName = "Recipe URL is required.";
+    //   e.target.recipeName.value = "";
+    // }
+
     return Object.keys(errors).length === 0 ? null : errors;
   };
 
@@ -57,14 +67,31 @@ class AppWrapper extends Component {
       .join(" ");
   };
 
+  handleAddRecipe = e => {
+    // const errors = this.validate(e);
+    // this.setState({
+    //   errors: errors || {}
+    // });
+    // if (errors) return;
+    e.preventDefault();
+    let recipeName = e.target.recipeName.value;
+    recipeName = this.titleCaseItem(recipeName);
+    console.log(recipeName);
+    // firestore
+    //   .collection("recipes")
+    //   .doc()
+    //   .set(recipeName);
+    // e.target.reset();
+  };
+
   handleAddItem = (e, quantity) => {
     e.preventDefault();
 
-    const errors = this.validate(e);
-    this.setState({
-      errors: errors || {}
-    });
-    if (errors) return;
+    // const errors = this.validate(e);
+    // this.setState({
+    //   errors: errors || {}
+    // });
+    // if (errors) return;
 
     let itemName = e.target.itemName.value;
     itemName = this.titleCaseItem(itemName);
@@ -134,6 +161,7 @@ class AppWrapper extends Component {
           <AddItem
             categories={categories}
             onAddItem={this.handleAddItem}
+            onAddRecipe={this.handleAddRecipe}
             error={errors.itemName}
           />
         </div>

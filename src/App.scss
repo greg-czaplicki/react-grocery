@@ -62,6 +62,8 @@ body {
 }
 
 .listWrapper {
+  padding: 40px;
+
   @media screen and (min-width: 1024px) {
     display: grid;
     grid-template-columns: 1fr 1fr;

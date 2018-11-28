@@ -3,7 +3,14 @@ import React, { Component } from "react";
 class AddItem extends Component {
   state = {
     itemQuantity: 1,
-    itemValue: ""
+    itemValue: "",
+    checkCategory: "Produce"
+  };
+
+  checkCategory = e => {
+    this.setState({
+      checkCategory: e.target.value
+    });
   };
 
   validateProperty = e => {
@@ -29,27 +36,62 @@ class AddItem extends Component {
   };
 
   render() {
-    const { categories, onAddItem, error } = this.props;
+    const { categories, onAddItem, onAddRecipe, error } = this.props;
     const { itemQuantity } = this.state;
     return (
       <form
         onSubmit={e => {
-          onAddItem(e, itemQuantity);
+          if (this.state.checkCategory !== "Recipes") {
+            onAddItem(e, itemQuantity);
+          } else {
+            onAddRecipe(e);
+          }
         }}
         onReset={this.handleFormReset}
       >
-        <div className="form-group">
-          <label htmlFor="itemName">Item Name:</label>
-          <input
-            type="text"
-            name="itemName"
-            autoFocus
-            placeholder="Add an item..."
-            className="form-control form-control-lg"
-            onChange={this.validateProperty}
-          />
-          {error && <div className="alert alert-danger">{error}</div>}
-        </div>
+        {this.state.checkCategory !== "Recipes" && (
+          <div className="form-group">
+            <label htmlFor="itemName">Item Name:</label>
+            <input
+              type="text"
+              name="itemName"
+              autoFocus
+              placeholder="Add an item..."
+              className="form-control form-control-lg"
+              onChange={this.validateProperty}
+            />
+            {error && <div className="alert alert-danger">{error}</div>}
+          </div>
+        )}
+
+        {this.state.checkCategory === "Recipes" && (
+          <div className="form-group">
+            <label htmlFor="recipeName">Recipe Name:</label>
+            <input
+              type="text"
+              name="recipeName"
+              autoFocus
+              placeholder="Recipe name..."
+              className="form-control form-control-lg"
+              onChange={this.validateProperty}
+            />
+            {error && <div className="alert alert-danger">{error}</div>}
+          </div>
+        )}
+
+        {this.state.checkCategory === "Recipes" && (
+          <div className="form-group">
+            <label htmlFor="recipeURL">Recipe URL:</label>
+            <input
+              type="text"
+              name="recipeURL"
+              placeholder="Add Recipe URL..."
+              className="form-control form-control-lg"
+              onChange={this.validateProperty}
+            />
+            {error && <div className="alert alert-danger">{error}</div>}
+          </div>
+        )}
 
         <div className="form-group">
           <label htmlFor="itemCategory">Item Category:</label>
@@ -57,6 +99,7 @@ class AddItem extends Component {
             className="form-control form-control-lg"
             name="itemCategory"
             id="itemCategory"
+            onChange={this.checkCategory}
           >
             {categories.map(category => (
               <option key={category}>{category}</option>
@@ -64,44 +107,57 @@ class AddItem extends Component {
           </select>
         </div>
 
-        <div className="from-group">
-          <label htmlFor="itemQuantity">Item Quantity:</label>
-          <div className="row align-items-center">
-            <div className="col adjust-quantity">
-              {itemQuantity > 1 && (
+        {this.state.checkCategory !== "Recipes" && (
+          <div className="from-group">
+            <label htmlFor="itemQuantity">Item Quantity:</label>
+            <div className="row align-items-center">
+              <div className="col adjust-quantity">
+                {itemQuantity > 1 && (
+                  <button
+                    type="button"
+                    className="btn btn-dec btn-lg"
+                    onClick={this.decrementQuantity}
+                  >
+                    <i className="fa fa-minus" />
+                  </button>
+                )}
+              </div>
+              <div className="col text-center">
+                <span name="itemQuantity" className="itemQuantity">
+                  {itemQuantity}
+                </span>
+              </div>
+              <div className="col">
                 <button
                   type="button"
-                  className="btn btn-dec btn-lg"
-                  onClick={this.decrementQuantity}
+                  className="btn btn-inc btn-lg"
+                  onClick={this.incrementQuantity}
                 >
-                  <i className="fa fa-minus" />
+                  <i className="fa fa-plus" />
                 </button>
-              )}
-            </div>
-            <div className="col text-center">
-              <span name="itemQuantity" className="itemQuantity">
-                {itemQuantity}
-              </span>
-            </div>
-            <div className="col">
-              <button
-                type="button"
-                className="btn btn-inc btn-lg"
-                onClick={this.incrementQuantity}
-              >
-                <i className="fa fa-plus" />
-              </button>
+              </div>
             </div>
           </div>
-        </div>
+        )}
+        {this.state.checkCategory !== "Recipes" && (
+          <button
+            type="submit"
+            className="btn btn-addItem btn-lg"
+            disabled={this.state.itemValue === ""}
+          >
+            Add Item
+          </button>
+        )}
 
-        <button
-          type="submit"
-          className="btn btn-addItem btn-lg"
-          disabled={this.state.itemValue === ""}
-        >
-          Add Item
-        </button>
+        {this.state.checkCategory === "Recipes" && (
+          <button
+            type="submit"
+            className="btn btn-addItem btn-lg"
+            disabled={this.state.itemValue === ""}
+          >
+            Add Recipe
+          </button>
+        )}
       </form>
     );
   }
