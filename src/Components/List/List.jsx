@@ -3,7 +3,13 @@ import Item from "./Item/Item";
 
 class List extends Component {
   render() {
-    const { items, category, toggleCompleted, onEditItem } = this.props;
+    const {
+      items,
+      category,
+      toggleCompleted,
+      onEditItem,
+      categories
+    } = this.props;
     return (
       items.length > 0 && (
         <div className="list-group mb-4">
@@ -15,6 +21,7 @@ class List extends Component {
               item={item}
               toggleCompleted={toggleCompleted}
               onEditItem={onEditItem}
+              categories={categories}
             />
           ))}
         </div>

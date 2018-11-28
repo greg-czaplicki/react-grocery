@@ -3,7 +3,13 @@ import Item from "./Item/Item";
 
 class CompletedList extends Component {
   render() {
-    const { items, category, toggleCompleted, onEditItem } = this.props;
+    const {
+      items,
+      category,
+      toggleCompleted,
+      onEditItem,
+      categories
+    } = this.props;
     return (
       items.length > 0 && (
         <div className="completed">
@@ -17,6 +23,7 @@ class CompletedList extends Component {
                   item={item}
                   toggleCompleted={toggleCompleted}
                   onEditItem={onEditItem}
+                  categories={categories}
                 />
               ))}
             </div>

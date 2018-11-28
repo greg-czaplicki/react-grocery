@@ -127,8 +127,12 @@ class AppWrapper extends Component {
     e.target.reset();
   };
 
-  handleEditItem = item => {
-    console.log(item.id);
+  handleEditItem = e => {
+    e.preventDefault();
+    let itemName = e.target.itemName.value;
+    itemName = this.titleCaseItem(itemName);
+    const itemCategory = e.target.itemCategory.value;
+    console.log(itemName, itemCategory);
   };
 
   handleDeleteDB = () => {
@@ -197,6 +201,7 @@ class AppWrapper extends Component {
 
           {categories.map(category => (
             <List
+              categories={categories}
               category={category}
               items={this.filterItems(category, false)}
               toggleCompleted={this.toggleCompleted}
@@ -208,6 +213,7 @@ class AppWrapper extends Component {
 
           {categories.map(category => (
             <CompletedList
+              categories={categories}
               category={category}
               items={this.filterItems(category, true)}
               toggleCompleted={this.toggleCompleted}
