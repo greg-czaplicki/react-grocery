@@ -11,8 +11,9 @@ class Item extends Component {
           - {item.itemName}
           {item.itemQuantity > 1 ? ` - (${item.itemQuantity})` : ""}
         </h5>
-
-        <i class="fa fa-edit" onClick={() => onEditItem(item)} />
+        <span className="edit-container">
+          <i class="fa fa-edit" onClick={() => onEditItem(item)} />
+        </span>
       </div>
     );
   }

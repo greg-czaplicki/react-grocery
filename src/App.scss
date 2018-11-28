@@ -100,18 +100,36 @@ body {
   display: grid;
   grid-template-columns: 92% auto;
 
-  .fa-edit {
-    font-size: 24px;
-    color: rgb(94, 94, 94);
+  &:last-child {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  }
 
-    &:hover {
-      color: #8fd8ba;
-      background-color: #f8f9fa;
+  .edit-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-left: none;
+    border-bottom: none;
+
+    .fa-edit {
+      font-size: 24px;
+      color: rgb(94, 94, 94);
+
+      &:hover {
+        color: #8fd8ba;
+        background-color: #f8f9fa;
+      }
     }
   }
 }
 
 .list-group-item {
+  &:first-child {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
   &.list-group-item {
     .editIcon {
       grid-column-start: 1;
@@ -119,6 +137,7 @@ body {
 
     &-secondary {
       color: rgb(94, 94, 94);
+      border: none;
     }
 
     &-action {
