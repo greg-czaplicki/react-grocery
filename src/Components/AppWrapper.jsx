@@ -127,6 +127,10 @@ class AppWrapper extends Component {
     e.target.reset();
   };
 
+  handleEditItem = item => {
+    console.log(item.id);
+  };
+
   handleDeleteDB = () => {
     const password = window.prompt(
       "Enter the password to clear the grocery list."
@@ -196,6 +200,7 @@ class AppWrapper extends Component {
               category={category}
               items={this.filterItems(category, false)}
               toggleCompleted={this.toggleCompleted}
+              onEditItem={this.handleEditItem}
             />
           ))}
 
@@ -206,6 +211,7 @@ class AppWrapper extends Component {
               category={category}
               items={this.filterItems(category, true)}
               toggleCompleted={this.toggleCompleted}
+              onEditItem={this.handleEditItem}
             />
           ))}
 

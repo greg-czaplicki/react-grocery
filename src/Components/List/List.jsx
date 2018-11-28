@@ -3,7 +3,7 @@ import Item from "./Item/Item";
 
 class List extends Component {
   render() {
-    const { items, category, toggleCompleted } = this.props;
+    const { items, category, toggleCompleted, onEditItem } = this.props;
     return (
       items.length > 0 && (
         <div className="list-group mb-4">
@@ -11,7 +11,11 @@ class List extends Component {
             {category}
           </h4>
           {items.map(item => (
-            <Item item={item} toggleCompleted={toggleCompleted} />
+            <Item
+              item={item}
+              toggleCompleted={toggleCompleted}
+              onEditItem={onEditItem}
+            />
           ))}
         </div>
       )

@@ -3,7 +3,7 @@ import Item from "./Item/Item";
 
 class CompletedList extends Component {
   render() {
-    const { items, category, toggleCompleted } = this.props;
+    const { items, category, toggleCompleted, onEditItem } = this.props;
     return (
       items.length > 0 && (
         <div className="completed">
@@ -13,7 +13,11 @@ class CompletedList extends Component {
             </h4>
             <div>
               {items.map(item => (
-                <Item item={item} toggleCompleted={toggleCompleted} />
+                <Item
+                  item={item}
+                  toggleCompleted={toggleCompleted}
+                  onEditItem={onEditItem}
+                />
               ))}
             </div>
           </div>

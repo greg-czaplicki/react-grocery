@@ -96,8 +96,27 @@ body {
   margin-top: 80px;
 }
 
+.item {
+  display: grid;
+  grid-template-columns: 92% auto;
+
+  .fa-edit {
+    font-size: 24px;
+    color: rgb(94, 94, 94);
+
+    &:hover {
+      color: #8fd8ba;
+      background-color: #f8f9fa;
+    }
+  }
+}
+
 .list-group-item {
   &.list-group-item {
+    .editIcon {
+      grid-column-start: 1;
+    }
+
     &-secondary {
       color: rgb(94, 94, 94);
     }
