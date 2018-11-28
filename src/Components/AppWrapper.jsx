@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import AddItem from "./AddItem/AddItem";
 import List from "./List/List";
 import CompletedList from "./List/CompletedList";
+import Recipe from "./List/Recipe";
 import firebase from "../firebase";
 
 const firestore = firebase.firestore();
@@ -28,6 +29,7 @@ class AppWrapper extends Component {
       "Recipes"
     ],
     items: [],
+    recipes: [],
     errors: {}
   };
 
@@ -35,6 +37,11 @@ class AppWrapper extends Component {
     firestore.collection("items").onSnapshot(items =>
       this.setState({
         items: items.docs.map(item => item.data())
+      })
+    );
+    firestore.collection("recipes").onSnapshot(recipes =>
+      this.setState({
+        recipes: recipes.docs.map(recipe => recipe.data())
       })
     );
   }
@@ -165,7 +172,7 @@ class AppWrapper extends Component {
   };
 
   render() {
-    const { categories, items, errors } = this.state;
+    const { categories, items, errors, recipes } = this.state;
     return (
       <div className="container-fluid">
         <div className="addItemWrapper">
@@ -201,6 +208,8 @@ class AppWrapper extends Component {
               toggleCompleted={this.toggleCompleted}
             />
           ))}
+
+          <Recipe recipes={recipes} />
 
           {items.length > 0 && (
             <button
