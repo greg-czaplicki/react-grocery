@@ -147,6 +147,12 @@ body {
   }
 }
 
+h4.list-group-item.list-group-item-action.active,
+h4.list-group-item.list-group-item-secondary {
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+
 .list-group-item {
   &:first-child {
     border-top-left-radius: 0;
