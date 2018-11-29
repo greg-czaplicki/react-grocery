@@ -7,6 +7,23 @@ class AddItem extends Component {
     checkCategory: "Produce"
   };
 
+  getDate = () => {
+    let today = new Date();
+    let dd = today.getDate();
+    let mm = today.getMonth() + 1;
+    const yyyy = today.getFullYear();
+
+    if (dd < 10) {
+      dd = "0" + dd;
+    }
+
+    if (mm < 10) {
+      mm = "0" + mm;
+    }
+    today = mm + "-" + dd + "-" + yyyy;
+    return today;
+  };
+
   checkCategory = e => {
     this.setState({
       checkCategory: e.target.value
@@ -51,7 +68,10 @@ class AddItem extends Component {
       >
         {this.state.checkCategory !== "Recipes" && (
           <div className="form-group">
-            <label htmlFor="itemName">Item Name:</label>
+            <label htmlFor="itemName" className="todays-date">
+              <span>Item Name: </span>
+              {/* <span id="date">Date: {this.getDate()}</span> */}
+            </label>
             <input
               type="text"
               name="itemName"
@@ -59,6 +79,7 @@ class AddItem extends Component {
               placeholder="Add an item..."
               className="form-control form-control-lg"
               onChange={this.validateProperty}
+              aria-label="ItemName"
             />
             {error.itemName && (
               <div className="alert alert-danger">{error.itemName}</div>

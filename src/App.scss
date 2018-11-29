@@ -92,12 +92,14 @@ body {
 
     .recipe-title {
       font-weight: 300;
+      color: #0056b1;
     }
   }
 }
 
 .title {
   font-weight: 300;
+  // color: $primary-color;
 }
 
 .completed-title {
@@ -164,7 +166,7 @@ body {
 
     &-action {
       &.item.completed {
-        color: #a0a0a0;
+        color: #686868;
         font-style: italic;
         text-decoration: line-through;
       }
@@ -177,4 +179,9 @@ body {
       }
     }
   }
+}
+
+.todays-date {
+  display: flex;
+  justify-content: space-between;
 }

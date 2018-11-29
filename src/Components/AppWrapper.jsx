@@ -227,9 +227,9 @@ class AppWrapper extends Component {
 
         <div className="listWrapper">
           {items.length === 0 && (
-            <h4 className="empty-title">
+            <h3 className="empty-title">
               Your grocery list is currently empty.
-            </h4>
+            </h3>
           )}
 
           {categories.map(category => (
