@@ -46,6 +46,7 @@ class AppWrapper extends Component {
     );
   }
 
+  // Refactor
   validate = e => {
     const errors = {};
 
@@ -76,6 +77,7 @@ class AppWrapper extends Component {
     return Object.keys(errors).length === 0 ? null : errors;
   };
 
+  // Title Case Item Name
   titleCaseItem = name => {
     return name
       .split(" ")
@@ -83,26 +85,7 @@ class AppWrapper extends Component {
       .join(" ");
   };
 
-  handleAddRecipe = e => {
-    e.preventDefault();
-
-    const errors = this.validate(e);
-    this.setState({
-      errors: errors || {}
-    });
-    if (errors) return;
-
-    let recipeName = e.target.recipeName.value;
-    let recipeURL = e.target.recipeURL.value;
-    recipeName = this.titleCaseItem(recipeName);
-    let recipe = { recipeName, recipeURL };
-    firestore
-      .collection("recipes")
-      .doc()
-      .set(recipe);
-    e.target.reset();
-  };
-
+  // Add Item object to DB
   handleAddItem = (e, quantity) => {
     e.preventDefault();
 
@@ -128,6 +111,7 @@ class AppWrapper extends Component {
   };
 
   // refactor to bring in entire item
+  // Edit item object functionality
   handleEditItem = (item, id) => {
     item.preventDefault();
     let itemName = item.target.itemName.value;
@@ -146,8 +130,37 @@ class AppWrapper extends Component {
             .update({ itemName, itemCategory });
         });
       });
+    const modal = document.querySelector(`#item${id}`);
+    modal.classList.remove("show");
+    modal.style.display = "none";
+    const backdrop = document.querySelector(".modal-backdrop");
+    if (backdrop !== null) {
+      backdrop.remove();
+    }
   };
 
+  // Add Recipe to DB
+  handleAddRecipe = e => {
+    e.preventDefault();
+
+    const errors = this.validate(e);
+    this.setState({
+      errors: errors || {}
+    });
+    if (errors) return;
+
+    let recipeName = e.target.recipeName.value;
+    let recipeURL = e.target.recipeURL.value;
+    recipeName = this.titleCaseItem(recipeName);
+    let recipe = { recipeName, recipeURL };
+    firestore
+      .collection("recipes")
+      .doc()
+      .set(recipe);
+    e.target.reset();
+  };
+
+  // Delete all Items from DB
   handleDeleteDB = () => {
     const password = window.prompt(
       "Enter the password to clear the grocery list."
@@ -169,6 +182,7 @@ class AppWrapper extends Component {
     }
   };
 
+  // Toggle item completion function
   toggleCompleted = item => {
     const toggle = !item.isComplete;
     firestore
@@ -185,6 +199,7 @@ class AppWrapper extends Component {
       });
   };
 
+  // array of items filtered by category and completion
   filterItems = (cat, option) => {
     const filteredItems = this.state.items.filter(
       item => item.itemCategory === cat
@@ -198,6 +213,7 @@ class AppWrapper extends Component {
       <div className="container-fluid">
         <div className="addItemWrapper">
           <h1 className="text-center title">Grocery List</h1>
+
           <AddItem
             categories={categories}
             onAddItem={this.handleAddItem}
@@ -205,6 +221,7 @@ class AppWrapper extends Component {
             error={errors}
           />
         </div>
+
         <div className="listWrapper">
           {items.length === 0 && (
             <h4 className="empty-title">

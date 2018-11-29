@@ -123,6 +123,7 @@ class AddItem extends Component {
                     type="button"
                     className="btn btn-dec btn-lg"
                     onClick={this.decrementQuantity}
+                    aria-hidden
                   >
                     <i className="fa fa-minus" />
                   </button>
@@ -138,6 +139,7 @@ class AddItem extends Component {
                   type="button"
                   className="btn btn-inc btn-lg"
                   onClick={this.incrementQuantity}
+                  aria-hidden
                 >
                   <i className="fa fa-plus" />
                 </button>
