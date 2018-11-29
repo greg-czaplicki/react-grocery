@@ -98,7 +98,11 @@ body {
 
 .item {
   display: grid;
-  grid-template-columns: 92% auto;
+  @media screen and (min-width: 1600px) {
+    grid-template-columns: 92% auto;
+  }
+
+  grid-template-columns: 80% auto;
 
   &:hover {
     cursor: pointer;

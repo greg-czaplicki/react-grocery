@@ -27,14 +27,14 @@ class Modal extends Component {
               </button>
             </div>
             <div className="modal-body">
-              <form onSubmit={e => onEditItem(e)}>
+              <form onSubmit={e => onEditItem(e, item.id)}>
                 <div className="form-group">
                   <label htmlFor="itemName" className="col-form-label">
                     Item Name:
                   </label>
                   <input
                     type="text"
-                    className="form-control"
+                    className="form-control form-control-lg"
                     id="itemName"
                     defaultValue={item.itemName}
                   />

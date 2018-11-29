@@ -127,12 +127,25 @@ class AppWrapper extends Component {
     e.target.reset();
   };
 
-  handleEditItem = e => {
-    e.preventDefault();
-    let itemName = e.target.itemName.value;
-    const itemCategory = e.target.itemCategory.value;
+  // refactor to bring in entire item
+  handleEditItem = (item, id) => {
+    item.preventDefault();
+    let itemName = item.target.itemName.value;
+    const itemCategory = item.target.itemCategory.value;
     itemName = this.titleCaseItem(itemName);
-    console.log(itemName, itemCategory);
+
+    firestore
+      .collection("items")
+      .where("id", "==", id)
+      .get()
+      .then(QuerySnapshot => {
+        QuerySnapshot.forEach(doc => {
+          firestore
+            .collection("items")
+            .doc(doc.id)
+            .update({ itemName, itemCategory });
+        });
+      });
   };
 
   handleDeleteDB = () => {
