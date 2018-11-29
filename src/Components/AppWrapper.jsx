@@ -246,6 +246,8 @@ class AppWrapper extends Component {
             />
           ))}
 
+          {recipes.length > 0 && <h4 className="completed-title">Recipes</h4>}
+
           <Recipe recipes={recipes} />
 
           {items.length > 0 && (

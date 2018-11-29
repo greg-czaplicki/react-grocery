@@ -4,19 +4,20 @@ class Recipe extends Component {
   render() {
     const { recipes } = this.props;
     return (
-      <div>
-        <h4>Recipes</h4>
+      <div className="recipes">
         {recipes.map(recipe => (
           <div key={recipe.recipeName}>
-            {recipe.recipeName}
-            {" - "}
-            <a
-              href={recipe.recipeURL}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Click to view recipe
-            </a>
+            <h5 className="recipe-title">
+              {recipe.recipeName}
+              {" - "}
+              <a
+                href={recipe.recipeURL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Click to view recipe
+              </a>
+            </h5>
           </div>
         ))}
       </div>

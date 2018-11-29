@@ -85,6 +85,16 @@ body {
     grid-row: 500;
     grid-column: -3/-1;
   }
+
+  .recipes {
+    width: 100%;
+    grid-row: 499;
+    grid-column: -3/-1;
+
+    .recipe-title {
+      font-weight: 300;
+    }
+  }
 }
 
 .title {
