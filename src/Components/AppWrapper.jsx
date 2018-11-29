@@ -170,6 +170,16 @@ class AppWrapper extends Component {
           });
           return batch.commit();
         });
+      firestore
+        .collection("recipes")
+        .get()
+        .then(QuerySnapshot => {
+          const batch = firestore.batch();
+          QuerySnapshot.forEach(doc => {
+            batch.delete(doc.ref);
+          });
+          return batch.commit();
+        });
     } else {
       window.alert("The password is incorrect!");
     }
