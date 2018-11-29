@@ -5,7 +5,8 @@ class ItemModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal: false
+      modal: false,
+      itemName: ""
     };
 
     this.toggle = this.toggle.bind(this);
@@ -13,9 +14,19 @@ class ItemModal extends React.Component {
 
   toggle() {
     this.setState({
-      modal: !this.state.modal
+      modal: !this.state.modal,
+      buttonDisable: false
     });
   }
+
+  handleOnChange = e => {
+    let item = e.target.value;
+    if (item.trim() === "") {
+      this.setState({ buttonDisable: true });
+    } else {
+      this.setState({ buttonDisable: false });
+    }
+  };
 
   render() {
     const { item, categories, onEditItem } = this.props;
@@ -37,6 +48,7 @@ class ItemModal extends React.Component {
                   className="form-control form-control-lg"
                   id="itemName"
                   defaultValue={item.itemName}
+                  onChange={this.handleOnChange}
                 />
               </div>
               <div className="form-group">
@@ -61,6 +73,7 @@ class ItemModal extends React.Component {
                   color="primary"
                   id="update-item-button"
                   onClick={this.toggle}
+                  disabled={this.state.buttonDisable}
                 >
                   Save Changes
                 </Button>
