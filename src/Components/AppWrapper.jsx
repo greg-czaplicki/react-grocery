@@ -130,8 +130,8 @@ class AppWrapper extends Component {
   handleEditItem = e => {
     e.preventDefault();
     let itemName = e.target.itemName.value;
-    itemName = this.titleCaseItem(itemName);
     const itemCategory = e.target.itemCategory.value;
+    itemName = this.titleCaseItem(itemName);
     console.log(itemName, itemCategory);
   };
 
@@ -201,6 +201,7 @@ class AppWrapper extends Component {
 
           {categories.map(category => (
             <List
+              key={category}
               categories={categories}
               category={category}
               items={this.filterItems(category, false)}
@@ -213,6 +214,7 @@ class AppWrapper extends Component {
 
           {categories.map(category => (
             <CompletedList
+              key={category}
               categories={categories}
               category={category}
               items={this.filterItems(category, true)}

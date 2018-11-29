@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import Modal from "./Modal";
 
 class Item extends Component {
@@ -17,11 +16,11 @@ class Item extends Component {
         <span
           className="edit-container"
           data-toggle="modal"
-          data-target="#exampleModal"
+          data-target={"#item" + item.id}
         >
-          <i class="fa fa-edit" />
+          <i className="fa fa-edit" />
         </span>
-        <Modal categories={categories} />
+        <Modal categories={categories} item={item} onEditItem={onEditItem} />
       </div>
     );
   }

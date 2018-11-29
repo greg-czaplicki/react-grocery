@@ -20,6 +20,7 @@ class CompletedList extends Component {
             <div>
               {items.map(item => (
                 <Item
+                  key={item.id}
                   item={item}
                   toggleCompleted={toggleCompleted}
                   onEditItem={onEditItem}

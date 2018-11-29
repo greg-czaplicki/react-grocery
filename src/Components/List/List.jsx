@@ -18,6 +18,7 @@ class List extends Component {
           </h4>
           {items.map(item => (
             <Item
+              key={item.id}
               item={item}
               toggleCompleted={toggleCompleted}
               onEditItem={onEditItem}

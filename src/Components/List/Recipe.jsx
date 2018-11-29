@@ -7,7 +7,7 @@ class Recipe extends Component {
       <div>
         <h4>Recipes</h4>
         {recipes.map(recipe => (
-          <div>
+          <div key={recipe.recipeName}>
             {recipe.recipeName}
             {" - "}
             <a
