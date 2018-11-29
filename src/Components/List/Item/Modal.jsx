@@ -63,7 +63,11 @@ class Modal extends Component {
                   {/* <button type="button" className="btn btn-danger">
                     Delete Item
                   </button> */}
-                  <button type="submit" className="btn btn-primary">
+                  <button
+                    type="submit"
+                    className="btn btn-primary"
+                    id="update-item-button"
+                  >
                     Save Changes
                   </button>
                 </div>

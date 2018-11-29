@@ -130,13 +130,6 @@ class AppWrapper extends Component {
             .update({ itemName, itemCategory });
         });
       });
-    const modal = document.querySelector(`#item${id}`);
-    modal.classList.remove("show");
-    modal.style.display = "none";
-    const backdrop = document.querySelector(".modal-backdrop");
-    if (backdrop !== null) {
-      backdrop.remove();
-    }
   };
 
   // Add Recipe to DB

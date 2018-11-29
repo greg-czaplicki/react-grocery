@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Modal from "./Modal";
+import ItemModal from "./ItemModal";
 
 class Item extends Component {
   render() {
@@ -13,14 +13,11 @@ class Item extends Component {
           - {item.itemName}
           {item.itemQuantity > 1 ? ` - (${item.itemQuantity})` : ""}
         </h5>
-        <span
-          className="edit-container"
-          data-toggle="modal"
-          data-target={"#item" + item.id}
-        >
-          <i className="fa fa-edit" />
-        </span>
-        <Modal categories={categories} item={item} onEditItem={onEditItem} />
+        <ItemModal
+          categories={categories}
+          item={item}
+          onEditItem={onEditItem}
+        />
       </div>
     );
   }
