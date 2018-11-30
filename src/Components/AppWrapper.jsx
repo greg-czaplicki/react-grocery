@@ -80,6 +80,7 @@ class AppWrapper extends Component {
   // Title Case Item Name
   titleCaseItem = name => {
     return name
+      .trim()
       .split(" ")
       .map(w => w[0].toUpperCase() + w.substr(1).toLowerCase())
       .join(" ");
