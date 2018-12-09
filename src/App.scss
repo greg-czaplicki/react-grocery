@@ -87,8 +87,10 @@ body {
 
   .recipes {
     width: 100%;
-    grid-row: 499;
+    grid-row: 200;
     grid-column: -3/-1;
+    position: relative;
+    bottom: 40px;
 
     .recipe-title {
       font-weight: 300;

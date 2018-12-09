@@ -9,19 +9,7 @@ class AddItem extends Component {
 
   getDate = () => {
     let today = new Date();
-    let dd = today.getDate();
-    let mm = today.getMonth() + 1;
-    const yyyy = today.getFullYear();
-
-    if (dd < 10) {
-      dd = "0" + dd;
-    }
-
-    if (mm < 10) {
-      mm = "0" + mm;
-    }
-    today = mm + "-" + dd + "-" + yyyy;
-    return today;
+    return today.toLocaleDateString();
   };
 
   checkCategory = e => {
@@ -48,7 +36,8 @@ class AddItem extends Component {
 
   handleFormReset = () => {
     this.setState({
-      itemQuantity: 1
+      itemQuantity: 1,
+      checkCategory: "Produce"
     });
   };
 
@@ -70,7 +59,7 @@ class AddItem extends Component {
           <div className="form-group">
             <label htmlFor="itemName" className="todays-date">
               <span>Item Name: </span>
-              {/* <span id="date">Date: {this.getDate()}</span> */}
+              <span id="date">Date: {this.getDate()}</span>
             </label>
             <input
               type="text"

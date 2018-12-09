@@ -2,8 +2,8 @@ import React, { Component } from "react";
 
 class Recipe extends Component {
   truncateRecipe = recipe => {
-    if (recipe.length > 28) {
-      const newRecipe = recipe.substring(0, 29);
+    if (recipe.length > 25) {
+      const newRecipe = recipe.substring(0, 25);
       return newRecipe + "...";
     } else {
       return recipe;
